@@ -1,0 +1,9 @@
+{
+	"project_id": "docker-249308",
+	"source_image_family": "ubuntu-minimal-1604-lts",
+	"machine_type": "f1-micro",
+	"disk_type": "pd-ssd",
+	"image_description": "Minimal ubuntu 16.04 image with docker installed",
+	"ssh_username": "appuser",
+	"tags": ""
+}

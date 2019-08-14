@@ -1,0 +1,14 @@
+---
+- name: Install docker
+  hosts: all
+  become: true
+  tasks:
+  # Установим в цикле все зависимости
+    - name: Install docker
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - docker
+
+
