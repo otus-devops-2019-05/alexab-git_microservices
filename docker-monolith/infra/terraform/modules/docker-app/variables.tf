@@ -10,11 +10,16 @@ variable private_key {
 
 variable zone {
   # Описание переменной
-  description = "google compute instance zone"
+  description = "Google compute instance zone"
   default     = "europe-west1-b"
 }
 
-variable db_disk_image {
-  description = "Disk image for reddit db"
-  default     = "reddit-db-base"
+variable disk_image {
+  description = "Disk image for reddit app"
+  default     = "docker-ubuntu-minimal-1604"
+}
+
+variable enable_deploy {
+  description = "Deploy app boolean"
+  default     = 0
 }

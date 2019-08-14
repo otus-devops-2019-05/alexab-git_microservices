@@ -1,0 +1,11 @@
+project = "docker-249308"
+
+public_key_path = "~/.ssh/appuser.pub"
+
+private_key = "~/.ssh/appuser"
+
+disk_image = "docker-ubuntu-minimal-1604"
+
+zone = "europe-west1-b"
+
+#node_count = "1"
