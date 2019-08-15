@@ -1,4 +1,3 @@
-
 resource "google_compute_firewall" "reddit_app_port" {
   name    = "allow-reddit-app-port"
   network = "default"
@@ -11,4 +10,3 @@ resource "google_compute_firewall" "reddit_app_port" {
   target_tags   = ["reddit-app"]
   source_ranges = "${var.source_ranges}"
 }
-

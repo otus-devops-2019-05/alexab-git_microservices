@@ -9,4 +9,4 @@
        image: xyzuser/otus-reddit:1.0
        state: started
        ports:
-        - "8080:9000"
+        - "9292:9292"

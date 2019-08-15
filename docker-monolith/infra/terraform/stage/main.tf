@@ -10,8 +10,9 @@ module "docker-app" {
   source          = "../modules/docker-app"
   public_key_path = "${var.public_key_path}"
   zone            = "${var.zone}"
-  disk_image  = "${var.disk_image}"
+  disk_image      = "${var.disk_image}"
   private_key     = "${var.private_key}"
+  node_count      = "${var.node_count}"
 }
 
 module "vpc" {

@@ -10,7 +10,7 @@ variable region {
   description = "Region"
 
   # Значение по умолчанию
-  default = "europe-west1"
+  default = "europe-west4"
 }
 
 variable public_key_path {
@@ -26,7 +26,7 @@ variable private_key {
 variable zone {
   # Описание переменной
   description = "google compute instance zone"
-  default     = "europe-west1-b"
+  default     = "europe-west4-b"
 }
 
 variable "node_count" {

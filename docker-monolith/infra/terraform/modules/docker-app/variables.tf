@@ -11,7 +11,7 @@ variable private_key {
 variable zone {
   # Описание переменной
   description = "Google compute instance zone"
-  default     = "europe-west1-b"
+  default     = "europe-west4-b"
 }
 
 variable disk_image {
@@ -22,4 +22,9 @@ variable disk_image {
 variable enable_deploy {
   description = "Deploy app boolean"
   default     = 0
+}
+
+variable "node_count" {
+  description = "google compute instance count"
+  default     = "1"
 }

@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "reddit-app-bucket"
+    bucket = "docker-apps-bucket"
     prefix = "prod"
   }
 }

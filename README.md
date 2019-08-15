@@ -14,7 +14,13 @@
  
 ### Задание со *
  - Сравнил вывод двух команд docker inspect <u_container_id> и docker inspect <u_image_id>;
- 
+ - Создал директорию docker-monolith\infra, скопировал шаблон  terraform, ansible, packer;
+ - Создал ansible playbook docker-ubuntu-minimal-1604.yml для установки необходимых пакетов и docker;
+ - Подготовил с помощью packer образ ОС с предустановленным docker;
+ - Создал конифигурацию terraform;
+ - Создал ansible playbook reddit_on_docker.yml для запуска контейнера, содержащего приложение reddit;
+ - Проверил работоспособность.
+
 ### PR checklist
  - [x] Выставил label с темой домашнего задания
 
