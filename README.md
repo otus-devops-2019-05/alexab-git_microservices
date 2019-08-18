@@ -10,7 +10,7 @@
  - Записал вывод команды docker images в файл docker-monolith/docker-1.log;
  - Установил docker-machine;
  - Вывод docker run --rm -ti tehbilly/htop - используется namespace контейнера, в котором запущен htop с pid равным еденице;
- - Вывод docker run --rm --pid host -ti tehbilly/htop - используется namespace хоста, в котором запущен коньтейнер с htop, показаные все процессы хоста; 
+ - Вывод docker run --rm --pid host -ti tehbilly/htop - используется namespace хоста, в котором запущен контейнер с htop, показаные все процессы хоста; 
  
 ### Задание со *
  - Сравнил вывод двух команд docker inspect <u_container_id> и docker inspect <u_image_id>;
@@ -23,4 +23,18 @@
 
 ### PR checklist
  - [x] Выставил label с темой домашнего задания
+
+# Выполнено ДЗ №13
+ - [] Docker-образы. Микросервисы.
+
+### В процессе сделано:
+ - Создал новую ветку docker-3 в репозитории alexab_microservices в организации DevOps 2019-05;
+ - Создал новую структуру внутри репозитория: src/post-py, src/comment, src/ui;
+ - Создал в src/post-py, src/comment, src/ui Dockerfile с описанием сервисов;
+ - Создал для каждого из сервисов докер-образ;
+ 
+### Задание со *
+
+### PR checklist
+ - [] Выставил label с темой домашнего задания
 
