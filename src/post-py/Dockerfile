@@ -1,10 +1,12 @@
 FROM python:3.6.0-alpine
 
-COPY . /app
 WORKDIR /app
+COPY . /app
 
-RUN apk add --no-cache --update python3-dev  gcc build-base && \
-    pip install -r /app/requirements.txt
+RUN apk add --no-cache --virtual deps gcc musl-dev \
+  && pip install --upgrade pip \
+  && pip install -r /app/requirements.txt \
+  && apk del deps
 
 ENV POST_DATABASE_HOST post_db
 ENV POST_DATABASE posts
