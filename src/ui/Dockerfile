@@ -10,7 +10,7 @@ RUN apk update -qq && apk add --no-cache --virtual build-dependencies build-base
     && bundle install \
     && bundle clean --force
 
-ENV POST_SERVICE_HOST post 
+ENV POST_SERVICE_HOST post
 ENV POST_SERVICE_PORT 5000 
 ENV COMMENT_SERVICE_HOST comment
 ENV COMMENT_SERVICE_PORT 9292
