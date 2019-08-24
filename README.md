@@ -45,3 +45,30 @@
 ### PR checklist
  - [x] Выставил label с темой домашнего задания
 
+# Выполнено ДЗ №14
+ - [] Docker: сети, docker-compose.
+
+### В процессе сделано:
+ - Создал новую ветку docker-4 в репозитории alexab_microservices в организации DevOps 2019-05;
+ - Запустил контейнер с использованием none-драйвера;
+ - Запустил несколько раз с помощью docker run один и тот же докер-образ nginx с использованием host network-драйвера. В результате запущенным оказался только один экземпляр контейнера, так как остальные экземпляры пытались получить доступ к сокету host_ip:http, занятому первым экземпляром контейра;
+```code
+    2019-08-24T11:38:48.602334467+03:00 network connect bc0e976f1f7cbda6273249e6f7bb2d8512d5e3e9afe8d5e3ada2bdc1670bab7f (container=6953f4c435ba7482d45af158f68cb2022a4de1d611bd08c04698c905778de609, name=host, type=host)
+    2019-08-24T11:38:48.968919761+03:00 container start 6953f4c435ba7482d45af158f68cb2022a4de1d611bd08c04698c905778de609 (image=nginx, maintainer=NGINX Docker Maintainers <docker-maint@nginx.com>, name=agitated_villani)
+    2019-08-24T11:38:51.580303267+03:00 container die 6953f4c435ba7482d45af158f68cb2022a4de1d611bd08c04698c905778de609 (exitCode=1, image=nginx, maintainer=NGINX Docker Maintainers <docker-maint@nginx.com>, name=agitated_villani)
+    2019-08-24T11:38:51.586863781+03:00 network disconnect bc0e976f1f7cbda6273249e6f7bb2d8512d5e3e9afe8d5e3ada2bdc1670bab7f (container=6953f4c435ba7482d45af158f68cb2022a4de1d611bd08c04698c905778de609, name=host, type=host)
+    
+    NETWORK ID          NAME                DRIVER              SCOPE
+    bc0e976f1f7c        host                host                local
+```
+ - Добавил в скрпит запуска микросервисов tools/drun.sh разделение на front и back сети, присвоил каждому из запускаемых контейнеров имя. Проверил работоспособность;
+ - Установил на docker-host bridge-utils, изучил вывод коммнад brctl show, iptables -nL -t nat
+ - 
+ 
+
+### Задание со *
+ - ;
+
+### PR checklist
+ - [x] Выставил label с темой домашнего задания
+
