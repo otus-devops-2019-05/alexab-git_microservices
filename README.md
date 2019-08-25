@@ -46,7 +46,7 @@
  - [x] Выставил label с темой домашнего задания
 
 # Выполнено ДЗ №14
- - [] Docker: сети, docker-compose.
+ - [x] Docker: сети, docker-compose.
 
 ### В процессе сделано:
  - Создал новую ветку docker-4 в репозитории alexab_microservices в организации DevOps 2019-05;
@@ -73,7 +73,9 @@
  
 
 ### Задание со *
- - ;
+ - Создал docker-compose.override.yml для reddit проекта;
+ - Переопределил комманду запуска puma для контейнеров ui и comment на puma --debug -w 2 в docker-compose.override.yml;
+ - Изменять код каждого из приложений, не выполняя сборку образа можно с помощью монтирования кода как том (volume).
 
 ### PR checklist
  - [x] Выставил label с темой домашнего задания
