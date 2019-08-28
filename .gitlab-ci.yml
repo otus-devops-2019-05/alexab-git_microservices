@@ -7,6 +7,8 @@ variables:
  DATABASE_URL: 'mongodb://mongo/user_posts'
 
 before_script:
+  - apk update -qq && apk add --no-cache --virtual build-dependencies build-base ruby ruby-dev ruby-json \
+    && gem install bundler --no-ri --no-rdoc \
   - cd reddit
   - bundle install
 
