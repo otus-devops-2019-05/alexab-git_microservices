@@ -10,6 +10,7 @@ before_script:
   - apk update -qq
   - apk add --no-cache --virtual build-dependencies build-base ruby ruby-dev ruby-json
   - gem install bundler --no-ri --no-rdoc
+  - bundle update --bundle
   - cd reddit
   - bundle install
 
