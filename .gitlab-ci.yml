@@ -39,7 +39,6 @@ deploy_job:
     url: http://dev.example.com
 
 staging:
-<<<<<<< HEAD
   stage: stage
   when: manual
   script:
@@ -55,24 +54,3 @@ production:
   environment:
     name: production
     url: https://example.com
-=======
- stage: stage
- when: manual
- script:
-  - echo 'Deploy'
- environment:
-  name: stage
-  url: https://beta.example.com
-  
-production:
- stage: production
- when: manual
- script:
-  - echo 'Deploy'
- environment:
-  name: production
-  url: https://example.com
-
-
-
->>>>>>> feb00c80650e5ed8a418c19d578e2e50a59b8711
