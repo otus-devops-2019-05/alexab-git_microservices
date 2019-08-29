@@ -31,6 +31,30 @@ test_integration_job:
     - echo 'Testing 2'
 
 deploy_job:
-  stage: deploy
+  stage: review
   script:
     - echo 'Deploy'
+  environment:
+    name: dev
+    url: http://dev.example.com
+
+staging:
+ stage: stage
+ when: manual
+ script:
+  - echo 'Deploy'
+ environment:
+  name: stage
+  url: https://beta.example.com
+  
+production:
+ stage: production
+ when: manual
+ script:
+  - echo 'Deploy'
+ environment:
+  name: production
+  url: https://example.com
+
+
+
