@@ -9,6 +9,7 @@ gem 'mongo'
 gem 'rack-test'
 gem 'json'
 gem 'bigdecimal'
+gem 'test-unit'
 
 group :development do
     gem 'capistrano',         require: false
