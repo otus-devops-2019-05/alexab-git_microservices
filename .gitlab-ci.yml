@@ -11,9 +11,6 @@ variables:
  DATABASE_URL: 'mongodb://mongo/user_posts'
 
 before_script:
-  # - apk update -qq
-  # - apk add --no-cache --virtual build-dependencies build-base ruby ruby-dev ruby-json sqlite
-  # - gem install bundler -v 1.16.1  --no-ri --no-rdoc
   - cd reddit
   - bundle install
 
@@ -64,6 +61,7 @@ staging:
   environment:
     name: stage
     url: https://beta.example.com
+
 production:
   stage: production
   when: manual
@@ -74,3 +72,4 @@ production:
   environment:
     name: production
     url: https://example.com
+   
