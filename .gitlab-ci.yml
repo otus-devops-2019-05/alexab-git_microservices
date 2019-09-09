@@ -21,10 +21,13 @@ build_job:
     - docker:dind
   stage: build
   variables:
+    DOCKER_TLS_CERTDIR: ""
     DOCKER_HOST: tcp://docker:2375/
   script:
     - echo 'Building'
     - docker info
+    - cd reddit
+    - docker build -t reddit-app .
 
 
 test_unit_job:
