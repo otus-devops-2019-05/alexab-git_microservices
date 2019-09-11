@@ -27,7 +27,7 @@ build_job:
   script:
     - echo 'Building'
     - docker info
-    - docker build -t reddit-app -f reddit/Dockerfie .
+    - docker build -t reddit-app -f $(pwd)reddit/Dockerfie .
 
 test_unit_job:
   stage: test
