@@ -30,12 +30,12 @@ build_job:
     - cd reddit
     - docker build -t reddit-app .
 
-
 test_unit_job:
   stage: test
   services:
     - mongo:latest
   script:
+    - docker run -d reddit-app
     - ruby simpletest.rb
 
 test_integration_job:
