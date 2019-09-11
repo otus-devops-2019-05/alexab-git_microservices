@@ -27,15 +27,13 @@ build_job:
   script:
     - echo 'Building'
     - docker info
-    - cd reddit
-    - docker build -t reddit-app .
+    - docker build -t reddit-app -f reddit/Dockerfie .
 
 test_unit_job:
   stage: test
   services:
     - mongo:latest
   script:
-    - docker run -d reddit-app
     - ruby simpletest.rb
 
 test_integration_job:
