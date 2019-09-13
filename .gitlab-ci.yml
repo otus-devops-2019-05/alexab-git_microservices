@@ -49,6 +49,8 @@ deploy_job:
   variables:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_TLS_CERTDIR: ""
+  services:
+    - docker:dind
   stage: review
   script:
     - echo 'Deploy'
