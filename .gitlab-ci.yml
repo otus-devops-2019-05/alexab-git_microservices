@@ -26,8 +26,8 @@ build_job:
     - echo 'Building'
     - docker info
     - cd reddit
-    - docker build --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
-    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker build --tag $CI_REGISTRY_IMAGE:reddit-app-$CI_COMMIT_SHA .
+    - docker push $CI_REGISTRY_IMAGE:reddit-app-$CI_COMMIT_SHA
 
 test_unit_job:
   stage: test
@@ -45,8 +45,8 @@ deploy_job:
   stage: review
   script:
     - echo 'Deploy'
-    - docker pull xyzuser/gitlabci:$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
-    - docker run -d --name  $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -p 9292:9292 --rm
+    - docker pull $CI_REGISTRY_IMAGE:reddit-app-$CI_COMMIT_SHA
+    - docker run -d --name  $CI_REGISTRY_IMAGE:reddit-app-$CI_COMMIT_SHA -p 9292:9292 --rm
   environment:
     name: dev
     url: http://dev.example.com
