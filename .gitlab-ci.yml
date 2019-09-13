@@ -13,7 +13,7 @@ variables:
  DATABASE_URL: 'mongodb://mongo/user_posts'
 
 before_script:
-  #- docker login -u $USER -p $CI_BUILD_TOKEN
+  - docker login -u $CI_REGISTRY_USER -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
 
 build_job:
   image: docker:stable
@@ -26,8 +26,8 @@ build_job:
     - echo 'Building'
     - docker info
     - cd reddit
-    - docker build -t localhost:5000/reddit-app:$CI_COMMIT_SHA .
-    - docker push localhost:5000/reddit-app:$CI_COMMIT_SHA
+    - docker build --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - docker push xyzuser/gitlabci:$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
 
 test_unit_job:
   stage: test
@@ -45,8 +45,8 @@ deploy_job:
   stage: review
   script:
     - echo 'Deploy'
-    - docker pull localhost:5000/reddit-app:$CI_COMMIT_SHA 
-    - docker run -d --name reddit-app:$CI_COMMIT_SHA -p 9292:9292 --rm
+    - docker pull xyzuser/gitlabci:$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker run -d --name  $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -p 9292:9292 --rm
   environment:
     name: dev
     url: http://dev.example.com
