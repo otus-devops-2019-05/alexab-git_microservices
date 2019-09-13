@@ -12,11 +12,10 @@ stages:
 variables:
  DATABASE_URL: 'mongodb://mongo/user_posts'
 
-before_script:
-  - docker login -u $CI_REGISTRY_USER -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-
 build_job:
   image: docker:stable
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   services:
     - docker:dind
   stage: build
