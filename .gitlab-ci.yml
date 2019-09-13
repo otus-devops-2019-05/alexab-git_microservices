@@ -43,6 +43,9 @@ test_integration_job:
     - echo 'Testing 2'
 
 deploy_job:
+  image: docker:stable
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
   stage: review
   script:
     - echo 'Deploy'

@@ -92,12 +92,18 @@
  - Создал, зарегистрировал  и запустил runner;
  - Добавил тестирование приложения reddit в pipeline;
  - Добавил окружения dev, staging, production;
- - Добавил в описание pipeline директиву, которая не позволит  выкатить на staging и production код, не помеченный с помощью тэга в git.
+ - Добавил в описание pipeline директиву, которая не позволит выкатить на staging и production код, не помеченный с помощью тэга в git.
  - Добавил директива only, которая проверяет наличие тэга;
  - Определил динамические окружения с помощью переменных, доступных в .gitlab-ci.yml;
 
 ### Задание со *
- - ;
+ - Задал переменные окружения в GitLab-СI: CI_REGISTRY, CI_REGISTRY_IMAGE, CI_REGISTRY_PASSWORD, CI_REGISTRY_USER;
+ - Добавил Dockerfile для сборки образа приложения;
+ - Создал репозиторий xyzuser/gitlabci на dockerhub;
+ - Добавил сборку докер-образа в stage build .gitlab-ci.yml;
+ - Добавил запуск контейнера в deploy_job .gitlab-ci.yml;
+ - Интегрировал GitaLab-ci и канал https://devops-team-otus.slack.com/messages/CKE8HGVH7;
+
 
 ### PR checklist
  - [] Выставил label с темой домашнего задания
