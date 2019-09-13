@@ -27,7 +27,7 @@ build_job:
     - docker info
     - cd reddit
     - docker build --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
-    - docker push xyzuser/gitlabci:$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
 
 test_unit_job:
   stage: test
