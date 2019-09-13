@@ -27,7 +27,7 @@ build_job:
     - docker info
     - cd reddit
     - docker build -t reddit-app:$CI_COMMIT_SHA .
-    - docker push reddit-app:$CI_COMMIT_SHA
+    - docker push localhost:5000/reddit-app:$CI_COMMIT_SHA
 
 test_unit_job:
   stage: test
@@ -45,6 +45,7 @@ deploy_job:
   stage: review
   script:
     - echo 'Deploy'
+    - docker pull localhost:5000/reddit-app:$CI_COMMIT_SHA 
     - docker run -d --name reddit-app:$CI_COMMIT_SHA -p 9292:9292 --rm
   environment:
     name: dev
