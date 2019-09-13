@@ -13,9 +13,7 @@ variables:
  DATABASE_URL: 'mongodb://mongo/user_posts'
 
 before_script:
-  #  - docker info
-  #  - cd reddit
-  #  - bundle install
+  #- docker login -u $USER -p $CI_BUILD_TOKEN
 
 build_job:
   image: docker:stable
@@ -28,7 +26,8 @@ build_job:
     - echo 'Building'
     - docker info
     - cd reddit
-    - docker build -t reddit-app .
+    - docker build -t reddit-app:$CI_COMMIT_SHA .
+    - docker push reddit-app:$CI_COMMIT_SHA
 
 test_unit_job:
   stage: test
@@ -46,6 +45,7 @@ deploy_job:
   stage: review
   script:
     - echo 'Deploy'
+    - docker run -d --name reddit-app:$CI_COMMIT_SHA -p 9292:9292 --rm
   environment:
     name: dev
     url: http://dev.example.com
