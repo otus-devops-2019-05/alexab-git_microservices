@@ -44,6 +44,8 @@ test_integration_job:
 
 deploy_job:
   image: docker:stable
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   variables:
     DOCKER_HOST: tcp://docker:2375/
   stage: review
