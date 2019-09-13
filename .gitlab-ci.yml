@@ -26,7 +26,7 @@ build_job:
     - echo 'Building'
     - docker info
     - cd reddit
-    - docker build -t reddit-app:$CI_COMMIT_SHA .
+    - docker build -t localhost:5000/reddit-app:$CI_COMMIT_SHA .
     - docker push localhost:5000/reddit-app:$CI_COMMIT_SHA
 
 test_unit_job:
