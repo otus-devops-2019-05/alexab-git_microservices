@@ -103,7 +103,7 @@
  - Добавил сборку докер-образа в stage build .gitlab-ci.yml;
  - Добавил запуск контейнера в deploy_job .gitlab-ci.yml;
  - Интегрировал GitaLab-ci и канал https://devops-team-otus.slack.com/messages/CKE8HGVH7;
- - Автоматизировал развертывание и регистрацию Gitlab CI Runner с помощью terraform и ansible playbook. Настройки terraform и плей-бук ansible находятся в директории gitlab-ci/infra.
+ - Автоматизировал развертывание и регистрацию Gitlab CI Runner с помощью terraform и ansible playbook. Настройки terraform и плей-бук ansible находятся в директории gitlab/infra.
 
 
 ### PR checklist
