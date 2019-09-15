@@ -1,11 +1,6 @@
-variable app_disk_image {
+variable disk_image {
   description = "Disk image for reddit app"
-  default     = "reddit-app-base"
-}
-
-variable db_disk_image {
-  description = "Disk image for reddit db"
-  default     = "reddit-db-base"
+  default     = "docker-ubuntu-minimal-1604"
 }
 
 variable project {
@@ -16,7 +11,7 @@ variable region {
   description = "Region"
 
   # Значение по умолчанию
-  default = "europe-west1"
+  default = "europe-west4"
 }
 
 variable public_key_path {
@@ -32,7 +27,7 @@ variable private_key {
 variable zone {
   # Описание переменной
   description = "google compute instance zone"
-  default     = "europe-west1-b"
+  default     = "europe-west4-b"
 }
 
 variable "node_count" {

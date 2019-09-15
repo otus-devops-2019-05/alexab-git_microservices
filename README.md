@@ -81,7 +81,7 @@
  - [x] Выставил label с темой домашнего задания
 
 # Выполнено ДЗ №15
- - [] Устройство Gitlab CI. Построение процесса непрерывной поставки.
+ - [x] Устройство Gitlab CI. Построение процесса непрерывной поставки.
 
 ### В процессе сделано:
  - Создал новую ветку gitlab-ci-1 в репозитории alexab_microservices в организации DevOps 2019-05;
@@ -103,9 +103,10 @@
  - Добавил сборку докер-образа в stage build .gitlab-ci.yml;
  - Добавил запуск контейнера в deploy_job .gitlab-ci.yml;
  - Интегрировал GitaLab-ci и канал https://devops-team-otus.slack.com/messages/CKE8HGVH7;
+ - Автоматизировал развертывание и регистрацию Gitlab CI Runner с помощью terraform и ansible playbook. Настройки terraform и плей-бук ansible находятся в директории gitlab-ci/infra.
 
 
 ### PR checklist
- - [] Выставил label с темой домашнего задания
+ - [x] Выставил label с темой домашнего задания
 
 

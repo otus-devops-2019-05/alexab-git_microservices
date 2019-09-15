@@ -1,4 +1,4 @@
-project = "your_project_id"
+project = "my_project"
 
 public_key_path = "~/.ssh/appuser.pub"
 
@@ -8,4 +8,6 @@ disk_image = "reddit-base"
 
 zone = "europe-west1-b"
 
-node_count = "2"
+node_count = "1"
+
+

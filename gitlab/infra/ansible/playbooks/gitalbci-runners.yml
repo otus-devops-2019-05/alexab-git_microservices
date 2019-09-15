@@ -1,0 +1,8 @@
+---
+- name: Run gitlabci runners install
+  hosts: all
+  become: yes
+  vars_files:
+    - vars/main.yml
+  roles:
+    - { role: riemers.gitlab-runner }
