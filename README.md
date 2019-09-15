@@ -80,3 +80,33 @@
 ### PR checklist
  - [x] Выставил label с темой домашнего задания
 
+# Выполнено ДЗ №15
+ - [x] Устройство Gitlab CI. Построение процесса непрерывной поставки.
+
+### В процессе сделано:
+ - Создал новую ветку gitlab-ci-1 в репозитории alexab_microservices в организации DevOps 2019-05;
+ - Развернул Gitlab CI при помощи docker-machine на google cloud. Cкрипт развертывания tools/dhost-gitlab.sh;
+ - Настроил Gitlab CI  согласно инструкции;
+ - Создал группу и проект, проверил работоспособность  git push gitlab gitlab-ci-1;
+ - Определил CI/CD Pipeline для проекта в файле .gitlab-ci.yml;
+ - Создал, зарегистрировал  и запустил runner;
+ - Добавил тестирование приложения reddit в pipeline;
+ - Добавил окружения dev, staging, production;
+ - Добавил в описание pipeline директиву, которая не позволит выкатить на staging и production код, не помеченный с помощью тэга в git.
+ - Добавил директива only, которая проверяет наличие тэга;
+ - Определил динамические окружения с помощью переменных, доступных в .gitlab-ci.yml;
+
+### Задание со *
+ - Задал переменные окружения в GitLab-СI: CI_REGISTRY, CI_REGISTRY_IMAGE, CI_REGISTRY_PASSWORD, CI_REGISTRY_USER;
+ - Добавил Dockerfile для сборки образа приложения;
+ - Создал репозиторий xyzuser/gitlabci на dockerhub;
+ - Добавил сборку докер-образа в stage build .gitlab-ci.yml;
+ - Добавил запуск контейнера в deploy_job .gitlab-ci.yml;
+ - Интегрировал GitaLab-ci и канал https://devops-team-otus.slack.com/messages/CKE8HGVH7;
+ - Автоматизировал развертывание и регистрацию Gitlab CI Runner с помощью terraform и ansible playbook. Настройки terraform и плей-бук ansible находятся в директории gitlab/infra.
+
+
+### PR checklist
+ - [x] Выставил label с темой домашнего задания
+
+
