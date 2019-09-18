@@ -58,6 +58,24 @@ services:
       - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'       
+  mongodb-exporter:
+    image: ${USER_NAME}/mongodb-exporter
+    env_file: .env
+    networks:
+       back_net:
+        aliases:
+         - mongodb-exporter
+    command:
+      - '--collect.topmetrics'
+      - '--collect.database'
+      - '--collect.collection'
+  blackbox-exporter:
+    image: prom/blackbox-exporter:v0.15.1
+    env_file: .env
+    networks:
+      - back_net
+      - front_net
+
 volumes:
   prometheus_data:
   post_db:
