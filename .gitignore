@@ -14,4 +14,5 @@ jdauphant.nginx
 .pytest_cache
 venv/
 *.swp
-.env
+*.env
+
