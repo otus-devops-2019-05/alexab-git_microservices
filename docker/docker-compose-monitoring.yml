@@ -42,7 +42,7 @@ services:
     ports:
       - 3000:3000
 
- node-exporter:
+  node-exporter:
     image: prom/node-exporter:v0.15.2
     env_file: .env
     networks:
@@ -67,6 +67,7 @@ services:
       - '--collect.topmetrics'
       - '--collect.database'
       - '--collect.collection'
+
   blackbox-exporter:
     image: prom/blackbox-exporter:v0.15.1
     env_file: .env
