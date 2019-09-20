@@ -4,6 +4,7 @@ services:
     image: google/cadvisor:v0.29.0
     networks:
       - export_net
+      - front_net
     volumes:
       - '/:/rootfs:ro'
       - '/var/run:/var/run:rw'
@@ -27,6 +28,15 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention=1d'
+  alertmanager:
+    image: ${USER_NAME}/alertmanager
+    networks:
+      - export_net
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+    ports:
+      - 9093:9093
+        
   grafana:
     image: grafana/grafana:5.0.0
     networks:

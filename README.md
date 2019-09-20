@@ -136,4 +136,24 @@
 ### PR checklist
  - [x] Выставил label с темой домашнего задания
 
+# Выполнено ДЗ №17
+ - [] Мониторинг приложения и инфраструктуры.
+
+### В процессе сделано:
+ - Создал новую ветку monitoring-2 в репозитории alexab_microservices в организации DevOps 2019-05;
+ - Разделил docker-compose.yml на docker-compose-monitoring.yml с сервисами мониторинга и docker-compose.yml с сервисами приложения;
+ - Добавил cAdvisor в dockercompose-monitoring.yml и проверил работоспособность;
+ - Добавил Grafana в dockercompose-monitoring.yml и проверил работоспособность;
+ - Импортировал дашборд Docker and system monitoring;
+ - Создал дашборды: UI_Service_Monitoring и Business_Logic_Monitoring;
+ - Интегрировал Alertmanager и Prometheus;
+ - Интегрировал Alertmanager и тестовый слак канал;
+ - Проверил отработку правил Alertmanager;
+
+### Задание со *
+ - ;
+                                                                                     
+### PR checklist
+ - [] Выставил label с темой домашнего задания
+
 

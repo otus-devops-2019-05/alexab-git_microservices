@@ -14,6 +14,9 @@ post-py:
 
 prom:
 	@docker build -t $(USER_NAME)/prometheus -f $(MON_PATH)/prometheus/Dockerfile $(MON_PATH)/prometheus/
+alertmanager:
+	@docker build -t $(USER_NAME)/alertmanager -f $(MON_PATH)/alertmanager/Dockerfile $(MON_PATH)/alertmanager/
+
 
 
 push-ui:
@@ -24,10 +27,13 @@ push-post-py:
 	@docker push  $(USER_NAME)/post-py
 push-prom:
 	@docker push  $(USER_NAME)/prometheus
+push-alertmanager:
+	@docker push  $(USER_NAME)/alertmanager
 
 
-all: ui comment post-py prom
-push-all:  push-ui push-comment push-post-py push-prom
+
+all: ui comment post-py prom alertmanager
+push-all:  push-ui push-comment push-post-py push-prom push-alertmanager
 
 
 
