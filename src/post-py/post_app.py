@@ -90,6 +90,10 @@ def init(app):
         'post_count',
         'A counter of new posts'
     )
+    app.vote_count = prometheus_client.Counter(
+        'vote_count',
+        'A counter of votes'
+    )
     # database client connection
     app.db = MongoClient(
         POST_DATABASE_HOST,
@@ -157,6 +161,7 @@ def vote():
     else:
         log_event('info', 'post_vote', 'Successful vote',
                   {'post_id': post_id, 'vote_type': vote_type})
+        app.vote_count.inc()
         return 'OK'
 
 

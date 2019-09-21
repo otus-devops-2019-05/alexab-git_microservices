@@ -18,7 +18,7 @@ services:
     networks:
       - front_net
   post:
-    image: ${USER_NAME}/post-py:${POST_VERSION}
+    image: ${USER_NAME}/post:${POST_VERSION}
     env_file: .env
     networks:
       - back_net

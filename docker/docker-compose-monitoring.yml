@@ -17,9 +17,9 @@ services:
     image: ${USER_NAME}/prometheus
     env_file: .env
     networks:
-      - back_net
-      - front_net
       - export_net
+      - front_net
+      - back_net
     ports:
       - '9090:9090'
     volumes:
@@ -28,21 +28,21 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention=1d'
-        
-  alertmanager:
-    image: ${USER_NAME}/alertmanager
+  
+  stackdriver-exporter:
+    image: frodenas/stackdriver-exporter
+    env_file: .env
     networks:
       - export_net
-    command:
-      - '--config.file=/etc/alertmanager/config.yml'
-    ports:
-      - 9093:9093
-        
-  grafana:
-    image: grafana/grafana:5.0.0
-    networks:
       - front_net
+    ports:
+      - '9255:9255'
+ 
+  grafana:
+    image: ${USER_NAME}/grafana
+    networks:
       - export_net
+      - front_net
     volumes:
       - grafana_data:/var/lib/grafana
     environment:
@@ -52,6 +52,24 @@ services:
       - prometheus
     ports:
       - 3000:3000
+
+  trickster:
+    image: ${USER_NAME}/trickster
+    env_file: .env
+    networks:
+      - export_net
+      - front_net
+    ports:
+      - 19090:19090
+        
+  alertmanager:
+    image: ${USER_NAME}/alertmanager
+    networks:
+      - export_net
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+    ports:
+      - 9093:9093
 
   node-exporter:
     image: prom/node-exporter:v0.15.2
