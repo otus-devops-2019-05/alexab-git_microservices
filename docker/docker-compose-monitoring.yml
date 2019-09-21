@@ -12,7 +12,7 @@ services:
       - '/var/lib/docker/:/var/lib/docker:ro'
     ports:
       - '8080:8080'
-
+  
   prometheus:
     image: ${USER_NAME}/prometheus
     env_file: .env
@@ -28,6 +28,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention=1d'
+        
   alertmanager:
     image: ${USER_NAME}/alertmanager
     networks:
@@ -65,7 +66,8 @@ services:
     command:
       - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
-      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'       
+      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
+        
   mongodb-exporter:
     image: ${USER_NAME}/mongodb-exporter
     env_file: .env
@@ -84,11 +86,29 @@ services:
     networks:
       - back_net
       - front_net
+        
+  telegraf:
+    image: ${USER_NAME}/telegraf
+    container_name: telegraf
+    environment:
+      HOST_PROC: /rootfs/proc
+      HOST_SYS: /rootfs/sys
+      HOST_ETC: /rootfs/etc
+    networks:
+      - export_net
+    ports:
+      - 9126:9126
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys:/rootfs/sys:ro
+      - /proc:/rootfs/proc:ro
+      - /etc:/rootfs/etc:ro
 
 volumes:
   prometheus_data:
   grafana_data:
- 
+  influxdb_data:
+    
 networks:
   back_net:
     driver: ${NET_DRIVER}
@@ -103,7 +123,7 @@ networks:
       config:
         - subnet: ${NET_FRONT}
   export_net:
-    driver: ${NET_DRIVER}
+    driver:  ${NET_DRIVER}
     ipam:
       driver: default
       config:

@@ -293,8 +293,8 @@
     "list": []
   },
   "time": {
-    "from": "2019-09-20T15:00:40.068Z",
-    "to": "2019-09-20T15:30:40.068Z"
+    "from": "now-6h",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [

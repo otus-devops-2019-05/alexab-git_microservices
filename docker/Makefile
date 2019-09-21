@@ -14,6 +14,10 @@ post-py:
 
 prom:
 	@docker build -t $(USER_NAME)/prometheus -f $(MON_PATH)/prometheus/Dockerfile $(MON_PATH)/prometheus/
+
+telegraf:
+	@docker build -t $(USER_NAME)/telegraf -f $(MON_PATH)/telegraf/Dockerfile $(MON_PATH)/telegraf/
+
 alertmanager:
 	@docker build -t $(USER_NAME)/alertmanager -f $(MON_PATH)/alertmanager/Dockerfile $(MON_PATH)/alertmanager/
 
@@ -27,13 +31,15 @@ push-post-py:
 	@docker push  $(USER_NAME)/post-py
 push-prom:
 	@docker push  $(USER_NAME)/prometheus
+push-telegraf:
+	@docker push  $(USER_NAME)/prometheus
 push-alertmanager:
 	@docker push  $(USER_NAME)/alertmanager
 
 
 
-all: ui comment post-py prom alertmanager
-push-all:  push-ui push-comment push-post-py push-prom push-alertmanager
+all: ui comment post-py prom alertmanager telegraf
+push-all:  push-ui push-comment push-post-py push-prom push-alertmanager push-telegraf
 
 
 
