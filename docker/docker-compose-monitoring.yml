@@ -1,0 +1,149 @@
+version: '3.3'
+services:
+  cadvisor:
+    image: google/cadvisor:v0.29.0
+    networks:
+      - export_net
+      - front_net
+    volumes:
+      - '/:/rootfs:ro'
+      - '/var/run:/var/run:rw'
+      - '/sys:/sys:ro'
+      - '/var/lib/docker/:/var/lib/docker:ro'
+    ports:
+      - '8080:8080'
+  
+  prometheus:
+    image: ${USER_NAME}/prometheus
+    env_file: .env
+    networks:
+      - export_net
+      - front_net
+      - back_net
+    ports:
+      - '9090:9090'
+    volumes:
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention=1d'
+  
+  stackdriver-exporter:
+    image: frodenas/stackdriver-exporter
+    env_file: .env
+    networks:
+      - export_net
+      - front_net
+    ports:
+      - '9255:9255'
+ 
+  grafana:
+    image: ${USER_NAME}/grafana
+    networks:
+      - export_net
+      - front_net
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=secret
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+
+  trickster:
+    image: ${USER_NAME}/trickster
+    env_file: .env
+    networks:
+      - export_net
+      - front_net
+    ports:
+      - 19090:19090
+        
+  alertmanager:
+    image: ${USER_NAME}/alertmanager
+    networks:
+      - export_net
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+    ports:
+      - 9093:9093
+
+  node-exporter:
+    image: prom/node-exporter:v0.15.2
+    env_file: .env
+    networks:
+      - export_net
+    user: root
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
+        
+  mongodb-exporter:
+    image: ${USER_NAME}/mongodb-exporter
+    env_file: .env
+    networks:
+       back_net:
+        aliases:
+         - mongodb-exporter
+    command:
+      - '--collect.topmetrics'
+      - '--collect.database'
+      - '--collect.collection'
+
+  blackbox-exporter:
+    image: prom/blackbox-exporter:v0.15.1
+    env_file: .env
+    networks:
+      - back_net
+      - front_net
+        
+  telegraf:
+    image: ${USER_NAME}/telegraf
+    container_name: telegraf
+    environment:
+      HOST_PROC: /rootfs/proc
+      HOST_SYS: /rootfs/sys
+      HOST_ETC: /rootfs/etc
+    networks:
+      - export_net
+    ports:
+      - 9126:9126
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys:/rootfs/sys:ro
+      - /proc:/rootfs/proc:ro
+      - /etc:/rootfs/etc:ro
+
+volumes:
+  prometheus_data:
+  grafana_data:
+  influxdb_data:
+    
+networks:
+  back_net:
+    driver: ${NET_DRIVER}
+    ipam:
+      driver: default
+      config:
+        - subnet: ${NET_BACK}
+  front_net:
+    driver: ${NET_DRIVER}
+    ipam:
+      driver: default
+      config:
+        - subnet: ${NET_FRONT}
+  export_net:
+    driver:  ${NET_DRIVER}
+    ipam:
+      driver: default
+      config:
+        - subnet: ${NET_EXPORT}
+

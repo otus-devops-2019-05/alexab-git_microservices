@@ -136,4 +136,36 @@
 ### PR checklist
  - [x] Выставил label с темой домашнего задания
 
+# Выполнено ДЗ №17
+ - [x] Мониторинг приложения и инфраструктуры.
+
+### В процессе сделано:
+ - Создал новую ветку monitoring-2 в репозитории alexab_microservices в организации DevOps 2019-05;
+ - Разделил docker-compose.yml на docker-compose-monitoring.yml с сервисами мониторинга и docker-compose.yml с сервисами приложения;
+ - Добавил cAdvisor в dockercompose-monitoring.yml и проверил работоспособность;
+ - Добавил Grafana в dockercompose-monitoring.yml и проверил работоспособность;
+ - Импортировал дашборд Docker and system monitoring;
+ - Создал дашборды: UI_Service_Monitoring и Business_Logic_Monitoring;
+ - Интегрировал Alertmanager и Prometheus;
+ - Интегрировал Alertmanager и тестовый слак канал;
+ - Проверил отработку правил Alertmanager.
+
+### Задание со *
+ - Внёс в Makefile билд и публикацию добавленных в этом ДЗ сервисов;
+ - Запустил сбор метрик из Docker Engine в Prometheus, выбрал готовый дашборд Docker Engine Metrics. Cadvisor собирает больше метрик, чем Docker Engine Metrics;
+ - Запустил сбор метрик с помощью Telegraf, выбрал готовый дашборд System Metrics - Single. Telegraf имеет большое количествор плагинов, может собирать данные не только с системы, но и с приложений;
+ - Настраивать интеграцию Alertmanager с email не стал, так как либо нужно вносить изменения в grafana.ini вручную, что противоречит IAC, либо хранить email и пароль в публичном репозитарии. Можно записать логин и пароль в файл переменных окружения .env, но это тоже не очень хорошее решение. В качестве решения можно предложить дополнительный smtp-relay, созданные специально для отсылки почты из grafna. Внести в конфигурационный файл docker-compose контейнера grafa переменную окружения GF_SMTP_HOST с именем хоста smtp-relay.
+
+### Задание с **
+ - Добавил в образ grafana дашбордов и настройку источника данных;
+ - Добавил сбор метрик в Prometheus из Stackdriver с помощью докер образа stackdriver-exporter. Экспортировал compute.googleapis.com/instance/cpu,compute.googleapis.com/instance/disk;
+ - Добавил в код приложения бизнес-метрику - количество голосов. В дашборд Business_Logic_Monitoring добавил график: среднее количество голосов на пост за сутки.
+
+### Задание с ***
+ - Установил Trickster - кеширующий прокси от Comcast. Перенастроил график дашборда на использование Trickster;
+ -  
+ 
+### PR checklist
+ - [x] Выставил label с темой домашнего задания
+
 
