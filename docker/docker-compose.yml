@@ -8,23 +8,44 @@ services:
     networks:
       back_net:
         aliases:
-         - post_db
          - comment_db
   ui:
     image: ${USER_NAME}/ui:${UI_VERSION}
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     env_file: .env
     ports:
       - ${UI_PORT}:${UI_PORT}/tcp
     networks:
       - front_net
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.ui
+        
   post:
     image: ${USER_NAME}/post:${POST_VERSION}
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     env_file: .env
     networks:
       - back_net
       - front_net
+    depends_on:
+      - post_db
+    ports:
+      - "5000:5000"
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.post
+        
   comment:
     image: ${USER_NAME}/comment:${COMMENT_VERSION}
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     env_file: .env
     networks:
       - front_net
