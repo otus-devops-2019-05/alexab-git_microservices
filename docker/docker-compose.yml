@@ -19,6 +19,8 @@ services:
       - ${UI_PORT}:${UI_PORT}/tcp
     networks:
       - front_net
+    depends_on:
+      - post        
     logging:
       driver: "fluentd"
       options:
