@@ -56,8 +56,8 @@ push-fluentd:
 
 
 
-all: ui comment post prom alertmanager telegraf grafana trickster
-push-all:  push-ui push-comment push-post push-prom push-alertmanager push-telegraf push-trickster push-grafana
+all: ui comment post prom alertmanager telegraf grafana trickster fluentd
+push-all:  push-ui push-comment push-post push-prom push-alertmanager push-telegraf push-trickster push-grafana push-fluentd
 
 
 
