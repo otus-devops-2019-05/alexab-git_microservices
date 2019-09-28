@@ -2,15 +2,17 @@ REGISTRY_HOST=docker.io
 USER_NAME=xyzuser
 BUILD_PATH='../src'
 MON_PATH='../monitoring'
+LOG_PATH='../logging'
+
 
 ui:
-	@docker build -t $(USER_NAME)/ui -f $(BUILD_PATH)/ui/Dockerfile $(BUILD_PATH)/ui/
+	@docker build -t $(USER_NAME)/ui:logging -f $(BUILD_PATH)/ui/Dockerfile $(BUILD_PATH)/ui/
 
 comment:
-	@docker build -t $(USER_NAME)/comment -f $(BUILD_PATH)/comment/Dockerfile $(BUILD_PATH)/comment/
+	@docker build -t $(USER_NAME)/comment:logging -f $(BUILD_PATH)/comment/Dockerfile $(BUILD_PATH)/comment/
 
 post:
-	@docker build -t $(USER_NAME)/post -f $(BUILD_PATH)/post-py/Dockerfile $(BUILD_PATH)/post-py/
+	@docker build -t $(USER_NAME)/post:logging -f $(BUILD_PATH)/post-py/Dockerfile $(BUILD_PATH)/post-py/
 
 prom:
 	@docker build -t $(USER_NAME)/prometheus -f $(MON_PATH)/prometheus/Dockerfile $(MON_PATH)/prometheus/
@@ -26,6 +28,9 @@ trickster:
 
 alertmanager:
 	@docker build -t $(USER_NAME)/alertmanager -f $(MON_PATH)/alertmanager/Dockerfile $(MON_PATH)/alertmanager/
+
+fluentd:
+	@docker build -t $(USER_NAME)/fluentd -f $(LOG_PATH)/fluentd/Dockerfile $(LOG_PATH)/fluentd/
 
 
 
@@ -45,11 +50,14 @@ push-alertmanager:
 	@docker push  $(USER_NAME)/alertmanager
 push-trickster:
 	@docker push  $(USER_NAME)/trickster
+push-fluentd:
+	@docker push  $(USER_NAME)/fluentd
 
 
 
-all: ui comment post prom alertmanager telegraf grafana trickster
-push-all:  push-ui push-comment push-post push-prom push-alertmanager push-telegraf push-trickster push-grafana
+
+all: ui comment post prom alertmanager telegraf grafana trickster fluentd
+push-all:  push-ui push-comment push-post push-prom push-alertmanager push-telegraf push-trickster push-grafana push-fluentd
 
 
 
